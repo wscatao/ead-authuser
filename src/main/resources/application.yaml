@@ -1,0 +1,16 @@
+server:
+  port: 8087
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ead-authuser
+    username: postgres
+    password: Pa$$w0rd
+  jpa:
+    hibernate:
+      ddl-auto: update
+      jdbc:
+        lob.non-contextual-creation: true
+    properties:
+      hibernate:
+        show_sql: true
