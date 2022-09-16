@@ -94,6 +94,7 @@ public class UserController {
             userService.delete(userModelOptional.get());
 
             log.debug("DELETE deleteUser userId received {} ", userId.toString());
+
             log.info("User deleted successfully userId {} ", userId.toString());
 
             return ResponseEntity
@@ -128,6 +129,7 @@ public class UserController {
             userService.save(userModel);
 
             log.debug("PUT updateUser userDto updated {} ", userModel.toString());
+
             log.info("User updated successfully userId {} ", userModel.getUserId());
 
             return ResponseEntity
@@ -141,6 +143,8 @@ public class UserController {
                                                  @RequestBody
                                                  @Validated(UserDto.UserView.PasswordPut.class)
                                                  @JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto) {
+
+        log.debug("PUT updatePassword userDto received {} ", userDto.toString());
 
         Optional<UserModel> userModelOptional = userService.findById(userId);
 
@@ -168,6 +172,10 @@ public class UserController {
 
             userService.save(userModel);
 
+            log.debug("PUT updatePassword userModel saved {} ", userModel.toString());
+
+            log.info("Password updated successfully userId {} ", userModel.getUserId());
+
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("Password updated successfully.");
@@ -179,6 +187,8 @@ public class UserController {
                                               @RequestBody
                                               @Validated(UserDto.UserView.ImagePut.class)
                                               @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
+
+        log.debug("PUT updateImage userDto received {} ", userDto.toString());
 
         Optional<UserModel> userModelOptional = userService.findById(userId);
 
@@ -194,6 +204,10 @@ public class UserController {
             userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
 
             userService.save(userModel);
+
+            log.debug("PUT updateImage userModel saved {} ", userModel.toString());
+
+            log.info("Image updated successfully userId {} ", userModel.getUserId());
 
             return ResponseEntity
                     .status(HttpStatus.OK)
