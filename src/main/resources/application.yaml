@@ -18,9 +18,9 @@ spring:
       ansi:
         enabled: Always
 
-#logging:
-#  level:
-#    com.ead: TRACE,
+logging:
+  level:
+    com.ead: DEBUG
 #    root: INFO,
 #    org.springframework.web: DEBUG,
 #    org.hibernate: INFO
