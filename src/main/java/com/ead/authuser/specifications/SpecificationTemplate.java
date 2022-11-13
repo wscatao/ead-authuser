@@ -1,6 +1,5 @@
 package com.ead.authuser.specifications;
 
-import com.ead.authuser.models.UserCourseModel;
 import com.ead.authuser.models.UserModel;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
