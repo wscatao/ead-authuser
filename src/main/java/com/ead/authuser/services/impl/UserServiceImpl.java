@@ -23,8 +23,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private CourseClient courseClient;
 
-    @Autowired
-    private UserCourseRepository userCourseRepository;
     @Override
     public Optional<UserModel> findById(UUID userId) {
         return userRepository.findById(userId);
@@ -33,22 +31,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void delete(UserModel userModel) {
-
-        boolean deleteUserCourseInCourse = false;
-
-        var userCourseModelList = userCourseRepository
-                .findAllUserCourseIntoUser(userModel.getUserId());
-
-        if(!userCourseModelList.isEmpty()) {
-            userCourseRepository.deleteAll( userCourseModelList);
-            deleteUserCourseInCourse = true;
-        }
-
         userRepository.delete(userModel);
-
-        if(deleteUserCourseInCourse) {
-            courseClient.deleteUserInCourse(userModel.getUserId());
-        }
     }
 
     @Override
