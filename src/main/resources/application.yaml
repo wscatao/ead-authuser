@@ -21,8 +21,8 @@ spring:
     output:
       ansi:
         enabled: Always
-    rabbitmq:
-      addresses: ${RABBIT_MQ_URL}
+  rabbitmq:
+    addresses: ${RABBIT_MQ_URL}
 
 logging:
   level:
@@ -35,6 +35,9 @@ ead:
   api:
     url:
       course: 'http://ead-course-service/ead-course'
+  broker:
+    exchange:
+      userEvent: ead.userevent
 
 eureka:
   client:
