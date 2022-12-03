@@ -13,7 +13,9 @@ public interface UserService {
 
     void delete(UserModel userModel);
 
-    void save(UserModel userModel);
+    UserModel save(UserModel userModel);
+
+    UserModel saveUser(UserModel userMdodel);
 
     boolean existsByUserName(String username);
 
