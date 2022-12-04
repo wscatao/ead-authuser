@@ -27,8 +27,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_USERS")
 public class UserModel extends RepresentationModel<UserModel> implements Serializable {
-
-    private static final long serailVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -65,20 +64,19 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private String imageUrl;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime creationDate;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime lastUpdateTime;
 
-    public UserEventDto convertToEventDto() {
-
+    public UserEventDto convertToUserEventDto(){
         var userEventDto = new UserEventDto();
         BeanUtils.copyProperties(this, userEventDto);
         userEventDto.setUserType(this.getUserType().toString());
         userEventDto.setUserStatus(this.getUserStatus().toString());
-
-        return  userEventDto;
+        return userEventDto;
     }
+
 }
