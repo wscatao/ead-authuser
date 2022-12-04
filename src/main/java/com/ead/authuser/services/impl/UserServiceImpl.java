@@ -43,15 +43,16 @@ public class UserServiceImpl implements UserService {
     public UserModel save(UserModel userModel) {
         return userRepository.save(userModel);
     }
+
     @Transactional
     @Override
-    public UserModel saveUser(UserModel userMdodel) {
+    public UserModel saveUser(UserModel userModel) {
 
-        var userModel = save(userMdodel);
+        var savedUser = save(userModel);
 
-        userEventPublisher.publishUserEvent(userModel.convertToEventDto(), ActionType.CREATE);
+        userEventPublisher.publishUserEvent(savedUser.convertToUserEventDto(), ActionType.CREATE);
 
-        return userMdodel;
+        return savedUser;
     }
 
     @Override
@@ -67,5 +68,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
         return userRepository.findAll(spec, pageable);
+    }
+
+    @Transactional
+    @Override
+    public void deleteUser(UserModel userModel) {
+        delete(userModel);
+        userEventPublisher.publishUserEvent(userModel.convertToUserEventDto(), ActionType.DELETE);
+    }
+
+    @Transactional
+    @Override
+    public UserModel updateUser(UserModel userModel) {
+        var savedUser = save(userModel);
+
+        userEventPublisher.publishUserEvent(savedUser.convertToUserEventDto(), ActionType.UPDATE);
+
+        return savedUser;
+    }
+
+    @Override
+    public UserModel updatePassword(UserModel userModel) {
+        return save(userModel);
     }
 }
