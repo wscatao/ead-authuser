@@ -1,8 +1,3 @@
-#server:
-#  port: 8087
-#  servlet:
-#    context-path: '/ead-authuser/'
-#
 spring:
   application:
     name: ead-authuser-service
@@ -12,58 +7,5 @@ spring:
     config:
       discovery:
         serviceId: ead-config-server
-#  datasource:
-#    url: ${DATABASE_URL}
-#    username: ${DATABASE_USER}
-#    password: ${DATABASE_PASSWORD}
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#      jdbc:
-#        lob.non-contextual-creation: true
-#    properties:
-#      hibernate:
-#        show_sql: true
-#    output:
-#      ansi:
-#        enabled: Always
-#  rabbitmq:
-#    addresses: ${RABBIT_MQ_URL}
-#
-#logging:
-#  level:
-#    com.ead: DEBUG
-##    root: INFO,
-##    org.springframework.web: DEBUG,
-##    org.hibernate: INFO
-#
-#ead:
-#  api:
-#    url:
-#      course: 'http://ead-course-service/ead-course'
-#  broker:
-#    exchange:
-#      userEvent: ead.userevent
-#
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: 'http://localhost:8761/eureka'
-#    instance:
-#      hostname: localhost
-#
-#resilience4j:
-#  circuitbreaker:
-#    instances:
-#        circuitbreakerInstance:
-#        slidingWindowSize: 30
-#        permittedNumberOfCallsInHalfOpenState: 2
-#        slidingWindowType: TIME_BASED
-#        minimumNumberOfCalls: 2
-#        waitDurationInOpenState: 30s
-#        failureRateThreshold: 80
-#  retry:
-#    instances:
-#      retryInstance:
-#        maxAttempts: 3
-#        waitDuration: 5s
+      username: configserver
+      password: 'ead123cs'
